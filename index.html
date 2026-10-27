@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>ScholarSpace — Academic writing workspace</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="ScholarSpace home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>scholar<span class="brand-light">space</span></span>
+      </a>
+
+      <div class="sidebar-label">SUPER RESEARCH APP</div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="workspace" type="button"><span class="nav-icon">▦</span> My workspace</button>
+        <button class="nav-item" data-view="draft" type="button"><span class="nav-icon">▤</span> Writing draft</button>
+        <button class="nav-item" data-view="sources" type="button"><span class="nav-icon">⌕</span> Sources <span class="nav-count" id="sourceCount">0</span></button>
+        <button class="nav-item" data-view="matrix" type="button"><span class="nav-icon">▥</span> Review matrix</button>
+      </nav>
+
+      <div class="sidebar-label projects-label">YOUR PROJECTS <button class="tiny-add" id="newProjectButton" type="button" aria-label="Create a project">+</button></div>
+      <button class="project-link selected-project" type="button"><span class="project-dot"></span> <span id="currentProjectLabel">Nigerian Taxation Review</span></button>
+
+      <section class="keyword-clusters" aria-labelledby="keywordClustersHeading">
+        <div class="sidebar-label" id="keywordClustersHeading">SEARCH CLUSTERS</div>
+        <div class="keyword-cluster-list" id="keywordClusterList"></div>
+        <p class="keyword-cluster-hint">Choose a cluster to search scholarly works.</p>
+      </section>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <span class="help-icon">✦</span>
+          <strong>Your ideas, organized.</strong>
+          <p>A calm space to shape your next big idea.</p>
+        </div>
+        <button class="profile-button" id="profileLogin" type="button" aria-label="Sign in">
+          <span class="avatar">A</span>
+          <span class="profile-copy"><strong>Alex Morgan</strong><small>Student plan</small></span>
+          <span class="profile-more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb"><span>My workspace</span><span class="crumb-slash">/</span><strong id="breadcrumbTitle">New research</strong></div>
+        <div class="top-actions">
+          <span class="save-status"><span class="save-dot"></span><span id="saveStatus">Saved locally</span></span>
+          <button class="button button-outline button-small" id="openLogin" type="button">Sign in</button>
+          <button class="button button-outline button-small" id="exportButton" type="button"><span aria-hidden="true">↓</span> Export</button>
+          <button class="button button-primary button-small" id="saveButton" type="button">Save draft</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="sparkle">✦</span> YOUR RESEARCH STUDIO</div>
+            <h1 id="pageHeading">Every great paper starts with a question.</h1>
+            <p class="welcome-copy">Bring your research together, find your focus, and build a paper you’re proud of.</p>
+          </div>
+          <div class="progress-card">
+            <div class="progress-ring"><span>01</span></div>
+            <div><span class="progress-kicker">YOUR PROGRESS</span><strong>Just getting started</strong><small>One step at a time.</small></div>
+          </div>
+        </section>
+
+        <section class="project-title-card">
+          <div class="project-title-icon" aria-hidden="true">✎</div>
+          <div class="project-title-fields">
+            <label for="projectTitle">PROJECT TITLE</label>
+            <input id="projectTitle" type="text" value="Nigerian Taxation Review" maxlength="120" placeholder="Give your research a working title">
+          </div>
+          <span class="title-badge"><span class="title-badge-dot"></span> IN PROGRESS</span>
+        </section>
+
+        <div class="workspace-grid">
+          <section class="setup-panel panel">
+            <div class="panel-heading">
+              <div><span class="step-label">STEP 1</span><h2>Shape your research</h2></div>
+              <span class="heading-icon" aria-hidden="true">⌁</span>
+            </div>
+            <p class="panel-description">A little direction goes a long way. Tell us what you’re working on.</p>
+
+            <label class="field-label" for="researchQuestion">RESEARCH QUESTION OR TOPIC</label>
+            <textarea id="researchQuestion" rows="3" maxlength="500" placeholder="What would you like to explore?">How do advanced international tax rules address cross-border business activity, tax avoidance, and the allocation of taxing rights?</textarea>
+            <div class="field-hint"><span>Be curious. You can refine this anytime.</span><span id="topicCount">0 / 500</span></div>
+
+            <div class="field-row">
+              <div>
+                <label class="field-label" for="discipline">FIELD OF STUDY</label>
+                <select id="discipline">
+                  <option>Basic & Pernanal Taxation</option><option>Corporate & Business Tax</option><option>Tax Administration & Law</option><option>Specialized & International Tax</option><option>Tax Consulting Proficiency</option><option selected>Nigerian Revenue Services </option><option>VAT & WHT Rate in Nigeria</option><option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="paperType">PAPER TYPE</label>
+                <select id="paperType">
+                  <option>Research paper</option><option>Literature review</option><option>Argumentative essay</option><option>Case study</option><option>Research proposal</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row lower-row">
+              <div>
+                <label class="field-label" for="citationStyle">CITATION STYLE</label>
+                <select id="citationStyle"><option>APA 7th edition</option><option>MLA 9th edition</option><option>Chicago</option><option>Harvard</option></select>
+              </div>
+              <div>
+                <label class="field-label" for="wordCount">TARGET WORD COUNT</label>
+                <select id="wordCount"><option value="1500">1,500 words</option><option value="2000" selected>2,000 words</option><option value="3000">3,000 words</option><option value="5000">5,000 words</option></select>
+              </div>
+            </div>
+
+            <div class="ethics-note"><span aria-hidden="true">ⓘ</span><p><strong>Good research starts with you.</strong> Your outline is a starting point, not a substitute for verified sources or your own analysis.</p></div>
+            <button class="button button-primary generate-button" id="generateButton" type="button"><span aria-hidden="true">✦</span> Build my research outline <span aria-hidden="true">→</span></button>
+          </section>
+
+          <section class="writing-panel panel" id="writingPanel">
+            <div class="writing-header">
+              <div>
+                <span class="step-label">STEP 2</span>
+                <h2>Your writing space</h2>
+              </div>
+              <button class="more-button" id="clearDraftButton" type="button" title="Clear draft" aria-label="Clear draft">···</button>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Writing workspace">
+              <button class="tab active" id="outlineTab" role="tab" aria-selected="true" type="button">Outline</button>
+              <button class="tab" id="draftTab" role="tab" aria-selected="false" type="button">Draft <span class="tab-dot"></span></button>
+              <button class="tab" id="sourcesTab" role="tab" aria-selected="false" type="button">Sources <span class="tab-source-count">0</span></button>
+              <button class="tab" id="matrixTab" role="tab" aria-selected="false" type="button">Review matrix</button>
+            </div>
+            <div class="writing-content" id="writingContent" role="tabpanel" aria-live="polite"></div>
+            <div class="writing-footer">
+              <span id="wordCountDisplay">0 words</span>
+              <span class="footer-divider"></span>
+              <span id="citationStyleDisplay">APA 7th edition</span>
+              <button class="text-button" id="copyButton" type="button">Copy text</button>
+            </div>
+          </section>
+        </div>
+
+        <section class="bottom-hint">
+          <span class="hint-symbol">✦</span>
+          <span><strong>A note on academic integrity</strong> &nbsp;Use this workspace to organize your thinking. Verify every source and write in your own voice.</span>
+          <button type="button" class="hint-dismiss" id="dismissHint" aria-label="Dismiss note">×</button>
+        </section>
+
+        <footer class="page-footer"><span>Made for curious minds.</span><span>YOUR WORK STAYS IN THIS BROWSER</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="sourceDialog" class="source-dialog">
+    <form id="sourceForm" method="dialog">
+      <div class="dialog-header"><div><span class="step-label">RESEARCH LIBRARY</span><h2>Add a source</h2></div><button class="dialog-close" type="button" id="closeDialog" aria-label="Close">×</button></div>
+      <p class="dialog-description">Keep track of sources you’ve found. Check the original publication for accurate citation details.</p>
+      <label class="field-label" for="sourceTitle">SOURCE TITLE</label>
+      <input id="sourceTitle" required maxlength="180" placeholder="Title of the article or book">
+      <label class="field-label" for="sourceAuthor">AUTHOR(S)</label>
+      <input id="sourceAuthor" maxlength="120" placeholder="e.g. Jane Smith">
+      <label class="field-label" for="sourceYear">YEAR</label>
+      <input id="sourceYear" inputmode="numeric" maxlength="4" placeholder="e.g. 2024">
+      <label class="field-label" for="sourceType">SOURCE TYPE</label>
+      <select id="sourceType"><option>Journal article</option><option>Book</option><option>Report</option><option>Legislation</option><option>Website</option><option>Other</option></select>
+      <label class="field-label" for="sourceUrl">DOI OR URL <span class="optional">(optional)</span></label>
+      <input id="sourceUrl" type="url" placeholder="https://doi.org/...">
+      <label class="field-label" for="sourceTags">TAGS <span class="optional">(optional, comma-separated)</span></label>
+      <input id="sourceTags" maxlength="200" placeholder="e.g. tax policy, methodology">
+      <label class="field-label" for="sourceAim">STUDY AIM <span class="optional">(optional)</span></label>
+      <textarea id="sourceAim" rows="2" maxlength="1000" placeholder="What question or objective did the study address?"></textarea>
+      <label class="field-label" for="sourceMethod">METHOD / SAMPLE <span class="optional">(optional)</span></label>
+      <textarea id="sourceMethod" rows="2" maxlength="1000" placeholder="Research design, participants, data, or materials"></textarea>
+      <label class="field-label" for="sourceFindings">KEY FINDINGS <span class="optional">(optional)</span></label>
+      <textarea id="sourceFindings" rows="2" maxlength="1000" placeholder="Main results or claims relevant to your question"></textarea>
+      <label class="field-label" for="sourceLimitations">LIMITATIONS <span class="optional">(optional)</span></label>
+      <textarea id="sourceLimitations" rows="2" maxlength="1000" placeholder="Caveats, gaps, or limitations noted in the study"></textarea>
+      <label class="field-label" for="sourceRelevance">RELEVANCE TO YOUR QUESTION <span class="optional">(optional)</span></label>
+      <textarea id="sourceRelevance" rows="2" maxlength="1000" placeholder="How does this source inform your research?"></textarea>
+      <div class="dialog-actions"><button class="button button-outline" type="button" id="cancelSource">Cancel</button><button class="button button-primary" type="submit">Add source</button></div>
+    </form>
+  </dialog>
+  <dialog id="loginDialog" class="source-dialog auth-dialog" aria-labelledby="loginHeading">
+    <form id="loginForm" method="dialog">
+      <div class="dialog-header">
+        <div><span class="step-label">WELCOME BACK</span><h2 id="loginHeading">Sign in</h2></div>
+        <button class="dialog-close" type="button" id="closeLogin" aria-label="Close sign in form">×</button>
+      </div>
+      <p class="dialog-description">Sign in to verify your account. Research projects remain stored in this browser.</p>
+      <p class="auth-feedback" id="authFeedback" role="alert" hidden></p>
+      <label class="field-label" for="loginEmail">EMAIL ADDRESS</label>
+      <input id="loginEmail" type="email" autocomplete="username" required maxlength="254" placeholder="you@example.com">
+      <label class="field-label" for="loginPassword">PASSWORD</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" required maxlength="128" placeholder="Enter your password">
+      <label class="field-label" id="confirmPasswordLabel" for="confirmPassword" hidden>CONFIRM PASSWORD</label>
+      <input id="confirmPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" placeholder="Enter your password again" hidden>
+      <p class="auth-notice" id="authNotice">Accounts use the local SQLite database. Passwords are securely hashed on the server.</p>
+      <div class="dialog-actions">
+        <button class="text-button auth-mode-toggle" type="button" id="toggleAuthMode">Create an account</button>
+        <button class="button button-outline" type="button" id="cancelLogin">Cancel</button>
+        <button class="button button-primary" id="submitAuth" type="submit">Sign in</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

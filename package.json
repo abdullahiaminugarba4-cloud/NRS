@@ -1,0 +1,12 @@
+{
+  "name": "scholarspace-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local research workspace with SQLite-backed authentication",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}
